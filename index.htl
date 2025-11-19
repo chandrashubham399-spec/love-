@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+        background: url("YOUR-BACKGROUND-IMAGE.jpg") no-repeat center center/cover;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0; left: 0; 
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.45);
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        padding: 50px 20px;
+    }
+
+    h1 {
+        font-size: 3rem;
+        color: #ffcad4;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.3rem;
+        max-width: 600px;
+        margin: auto;
+        line-height: 1.6;
+        color: #ffe9ef;
+    }
+
+    .heart {
+        font-size: 4rem;
+        margin-top: 20px;
+        animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+    }
+
+    .btn {
+        margin: 20px;
+        background: #ff4d6d;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 1.2rem;
+        display: inline-block;
+        transition: 0.3s;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .btn:hover {
+        background: #ff2e54;
+    }
+
+    /* YES MESSAGE POPUP */
+    #yesMessage {
+        display: none;
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.7);
+        padding: 30px 40px;
+        border-radius: 15px;
+        font-size: 1.7rem;
+        color: #ffdee7;
+        z-index: 5;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translate(-50%, -60%); }
+        100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    /* Floating hearts */
+    .heart-float {
+        position: fixed;
+        font-size: 20px;
+        color: #ffb3c6;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.8;
+        z-index: 0;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) scale(1); opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+    }
+
+    /* Sparkles */
+    .sparkle {
+        position: fixed;
+        width: 6px; height: 6px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: sparkleUp 3s linear infinite;
+    }
+
+    @keyframes sparkleUp {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- MUSIC -->
+<iframe width="0" height="0" 
+src="https://www.youtube.com/embed/Lp8NXg5wwPc?autoplay=1&loop=1&playlist=Lp8NXg5wwPc" 
+frameborder="0" allow="autoplay; encrypted-media"></iframe>
+
+<!-- YES MESSAGE -->
+<div id="yesMessage">I knew you would say YES ❤️</div>
+
+<div class="container">
+
+    <div class="heart">❤️</div>
+
+    <h1>Hey, You.</h1>
+
+    <p>
+        I don’t want perfect words.<br>
+        I just want **you** — today, tomorrow, always.
+    </p>
+
+    <h2 style="color:#ffcad4; margin-top:40px;">Will you be mine? ❤️</h2>
+
+    <a class="btn" onclick="yes()">Yes 😳❤️</a>
+    <a class="btn" id="no-btn" onmouseover="flyAway()">No 😐</a>
+
+</div>
+
+<script>
+/* FLOATING HEARTS */
+setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart-float";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}, 400);
+
+/* SPARKLES */
+setInterval(() => {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 5000);
+}, 250);
+
+/* YES MESSAGE */
+function yes() {
+    document.getElementById("yesMessage").style.display = "block";
+}
+
+/* NO BUTTON FLIES OFF SCREEN */
+function flyAway() {
+    let btn = document.getElementById("no-btn");
+    btn.style.transition = "0.8s";
+    btn.style.transform = "translate(" + (Math.random() * 600 - 300) + "px," + (Math.random() * -600) + "px)";
+}
+</script>
+
+</body>
+</html>
